@@ -13,7 +13,9 @@ import NotFound from "./pages/NotFound";
 import CourseDetail from "./pages/CourseDetail";
 import MyLearning from "./pages/MyLearning";
 import Profile from "./pages/Profile";
-
+import Payment from "./pages/Payment";
+import PaymentSuccess from "./pages/PaymentSuccess";
+import Learning from "./pages/Learning";
 function App() {
   return (
     <MainLayout>
@@ -31,12 +33,29 @@ function App() {
             </ProtectedRoute>
           }
           />
+          <Route
+            path="/payment/:id"
+            element={<Payment />}
+          />
+
+          <Route
+            path="/payment-success/:id"
+            element={<PaymentSuccess />}
+          />
 
           <Route path="/profile" element={
             <ProtectedRoute>
               <Profile />
             </ProtectedRoute>
           }
+          />
+          <Route
+            path="/learning/:id"
+            element={
+              <ProtectedRoute>
+                <Learning />
+              </ProtectedRoute>
+            }
           />
         </Routes>
       </PageTransition>

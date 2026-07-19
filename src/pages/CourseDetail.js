@@ -1,6 +1,17 @@
 import { useEffect, useState } from "react";
-import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
-import { getCourseById } from "../services/courseService";
+import {
+  Link,
+  useParams,
+  useLocation,
+  useNavigate
+} from "react-router-dom";
+
+import {
+  getCourseById,
+  checkEnrollment,
+  enrollCourse
+} from "../services/courseService";
+
 import { useAuth } from "../contexts/AuthContext";
 
 function CourseDetail() {
@@ -9,15 +20,18 @@ function CourseDetail() {
   const [course, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [isEnrolled, setIsEnrolled] = useState(false);
+  const [enrolling, setEnrolling] = useState(false);
 
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, currentUser } =
+    useAuth();
 
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
     fetchCourseDetail();
-  }, [id]);
+  }, [id, isAuthenticated, currentUser]);
 
   const fetchCourseDetail = async () => {
     try {
@@ -25,19 +39,133 @@ function CourseDetail() {
       setError("");
 
       const response = await getCourseById(id);
+
       setCourse(response.data);
+
+      if (
+        isAuthenticated &&
+        currentUser?.id
+      ) {
+        const enrollCheck =
+          await checkEnrollment(
+            Number(currentUser.id),
+            Number(id)
+          );
+
+        setIsEnrolled(
+          enrollCheck.data.length > 0
+        );
+      }
     } catch (error) {
-      console.error("Failed to load course detail:", error);
-      setError("Unable to load this course.");
+      console.error(
+        "Failed to load course detail:",
+        error
+      );
+
+      setError(
+        "Unable to load this course."
+      );
     } finally {
       setLoading(false);
     }
   };
 
+  // const handleEnrollAction = async () => {
+  //   if (isEnrolled) {
+  //     navigate(`/learning/${id}`);
+  //     return;
+  //   }
+
+  //   if (
+  //     !isAuthenticated ||
+  //     !currentUser
+  //   ) {
+  //     window.alert(
+  //       "You need to sign in before enrolling in this course."
+  //     );
+
+  //     navigate("/login", {
+  //       state: {
+  //         from: location
+  //       }
+  //     });
+
+  //     return;
+  //   }
+
+  //   try {
+  //     setEnrolling(true);
+
+  //     const enrollmentData = {
+  //       userId: Number(
+  //         currentUser.id
+  //       ),
+  //       courseId: Number(id),
+  //       enrolledAt:
+  //         new Date().toISOString()
+  //     };
+
+  //     await enrollCourse(
+  //       enrollmentData
+  //     );
+
+  //     setIsEnrolled(true);
+
+  //     setCourse((prev) => ({
+  //       ...prev,
+  //       studentCount:
+  //         prev.studentCount + 1
+  //     }));
+
+  //     window.alert(
+  //       "Enrolled successfully!"
+  //     );
+
+  //     navigate(`/learning/${id}`);
+  //   } catch (error) {
+  //     console.error(
+  //       "Enrollment failed:",
+  //       error
+  //     );
+
+  //     window.alert(
+  //       "Failed to enroll. Please try again."
+  //     );
+  //   } finally {
+  //     setEnrolling(false);
+  //   }
+  // };
+const handleEnrollAction = () => {
+  if (isEnrolled) {
+    navigate(`/learning/${id}`);
+    return;
+  }
+
+  if (
+    !isAuthenticated ||
+    !currentUser
+  ) {
+    window.alert(
+      "You need to sign in before enrolling in this course."
+    );
+
+    navigate("/login", {
+      state: { from: location }
+    });
+
+    return;
+  }
+
+  navigate(`/payment/${id}`);
+};
   if (loading) {
     return (
       <div className="container py-5 text-center">
-        <div className="spinner-border text-primary" role="status"></div>
+        <div
+          className="spinner-border text-primary"
+          role="status"
+        ></div>
+
         <p className="text-secondary mt-3">
           Loading course details...
         </p>
@@ -48,9 +176,14 @@ function CourseDetail() {
   if (error) {
     return (
       <div className="container py-5">
-        <div className="alert alert-danger">{error}</div>
+        <div className="alert alert-danger">
+          {error}
+        </div>
 
-        <Link className="btn btn-primary" to="/courses">
+        <Link
+          className="btn btn-primary"
+          to="/courses"
+        >
           Back to Courses
         </Link>
       </div>
@@ -61,24 +194,6 @@ function CourseDetail() {
     return null;
   }
 
-  const handleEnroll = () => {
-    if (!isAuthenticated) {
-      window.alert(
-        "You need to sign in before enrolling in this course."
-      );
-
-      navigate("/login", {
-        state: {
-          from: location
-        }
-      });
-
-      return;
-    }
-
-    console.log("User can enroll in this course");
-  };
-
   return (
     <div className="course-detail-page">
       <section className="course-detail-hero">
@@ -86,11 +201,15 @@ function CourseDetail() {
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb mb-4">
               <li className="breadcrumb-item">
-                <Link to="/">Home</Link>
+                <Link to="/">
+                  Home
+                </Link>
               </li>
 
               <li className="breadcrumb-item">
-                <Link to="/courses">Courses</Link>
+                <Link to="/courses">
+                  Courses
+                </Link>
               </li>
 
               <li
@@ -107,7 +226,9 @@ function CourseDetail() {
               <div className="course-main-card">
                 <div className="mb-3">
                   <span className="badge bg-primary me-2">
-                    {course.categoryName}
+                    {
+                      course.categoryName
+                    }
                   </span>
 
                   <span className="badge bg-light text-dark border">
@@ -120,43 +241,81 @@ function CourseDetail() {
                 </h1>
 
                 <p className="course-detail-description">
-                  {course.description}
+                  {
+                    course.description
+                  }
                 </p>
 
                 <div className="course-meta-grid">
                   <div className="course-meta-item">
-                    <div className="course-meta-icon">⏱</div>
+                    <div className="course-meta-icon">
+                      ⏱
+                    </div>
 
                     <div>
-                      <strong>{course.duration} hours</strong>
-                      <span>Course duration</span>
+                      <strong>
+                        {
+                          course.duration
+                        }{" "}
+                        hours
+                      </strong>
+
+                      <span>
+                        Course duration
+                      </span>
                     </div>
                   </div>
 
                   <div className="course-meta-item">
-                    <div className="course-meta-icon">📚</div>
+                    <div className="course-meta-icon">
+                      📚
+                    </div>
 
                     <div>
-                      <strong>{course.lessonCount} lessons</strong>
-                      <span>Learning content</span>
+                      <strong>
+                        {
+                          course.lessonCount
+                        }{" "}
+                        lessons
+                      </strong>
+
+                      <span>
+                        Learning content
+                      </span>
                     </div>
                   </div>
 
                   <div className="course-meta-item">
-                    <div className="course-meta-icon">⭐</div>
+                    <div className="course-meta-icon">
+                      ⭐
+                    </div>
 
                     <div>
-                      <strong>{course.rating}</strong>
-                      <span>Course rating</span>
+                      <strong>
+                        {course.rating}
+                      </strong>
+
+                      <span>
+                        Course rating
+                      </span>
                     </div>
                   </div>
 
                   <div className="course-meta-item">
-                    <div className="course-meta-icon">👨‍🎓</div>
+                    <div className="course-meta-icon">
+                      👨‍🎓
+                    </div>
 
                     <div>
-                      <strong>{course.studentCount}</strong>
-                      <span>Students enrolled</span>
+                      <strong>
+                        {
+                          course.studentCount
+                        }
+                      </strong>
+
+                      <span>
+                        Students enrolled
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -166,7 +325,11 @@ function CourseDetail() {
                     Instructor
                   </span>
 
-                  <strong>{course.instructor}</strong>
+                  <strong>
+                    {
+                      course.instructor
+                    }
+                  </strong>
                 </div>
               </div>
             </div>
@@ -177,8 +340,8 @@ function CourseDetail() {
                   src={course.image}
                   alt={course.title}
                   className="course-detail-image"
-                  onError={(event) => {
-                    event.currentTarget.src =
+                  onError={(e) => {
+                    e.currentTarget.src =
                       "/images/courses/default-course.jpg";
                   }}
                 />
@@ -192,12 +355,36 @@ function CourseDetail() {
                     <strong>
                       {course.price === 0
                         ? "Free"
-                        : `$${course.price.toFixed(2)}`}
+                        : `$${course.price.toFixed(
+                            2
+                          )}`}
                     </strong>
                   </div>
 
-                  <button type="button" className="btn btn-primary btn-lg w-100" onClick={handleEnroll}>
-                    Enroll Now
+                  <button
+                    type="button"
+                    className={`btn btn-lg w-100 ${
+                      isEnrolled
+                        ? "btn-success"
+                        : "btn-primary"
+                    }`}
+                    onClick={
+                      handleEnrollAction
+                    }
+                    disabled={
+                      enrolling
+                    }
+                  >
+                    {enrolling ? (
+                      <>
+                        <span className="spinner-border spinner-border-sm me-2"></span>
+                        Processing...
+                      </>
+                    ) : isEnrolled ? (
+                      "Go to Course"
+                    ) : (
+                      "Enroll Now"
+                    )}
                   </button>
 
                   <Link
@@ -206,85 +393,6 @@ function CourseDetail() {
                   >
                     View All Courses
                   </Link>
-
-                  <p className="small text-secondary text-center mt-3 mb-0">
-                    Learn at your own pace.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-5">
-        <div className="container">
-          <div className="row g-4">
-            <div className="col-lg-8">
-              <div className="course-content-card mb-4">
-                <h3>About This Course</h3>
-
-                <p>{course.description}</p>
-              </div>
-
-              <div className="course-content-card">
-                <h3>What You Will Learn</h3>
-
-                <div className="row g-3 mt-1">
-                  <div className="col-md-6">
-                    <div className="learning-item">
-                      ✓ Understand the fundamental concepts
-                    </div>
-                  </div>
-
-                  <div className="col-md-6">
-                    <div className="learning-item">
-                      ✓ Build practical projects
-                    </div>
-                  </div>
-
-                  <div className="col-md-6">
-                    <div className="learning-item">
-                      ✓ Apply knowledge through exercises
-                    </div>
-                  </div>
-
-                  <div className="col-md-6">
-                    <div className="learning-item">
-                      ✓ Improve professional skills
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-4">
-              <div className="course-content-card">
-                <h4>Course Information</h4>
-
-                <div className="course-info-row">
-                  <span>Instructor</span>
-                  <strong>{course.instructor}</strong>
-                </div>
-
-                <div className="course-info-row">
-                  <span>Level</span>
-                  <strong>{course.level}</strong>
-                </div>
-
-                <div className="course-info-row">
-                  <span>Duration</span>
-                  <strong>{course.duration} hours</strong>
-                </div>
-
-                <div className="course-info-row">
-                  <span>Lessons</span>
-                  <strong>{course.lessonCount}</strong>
-                </div>
-
-                <div className="course-info-row">
-                  <span>Category</span>
-                  <strong>{course.categoryName}</strong>
                 </div>
               </div>
             </div>

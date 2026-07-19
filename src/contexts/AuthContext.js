@@ -1,82 +1,116 @@
-import {  createContext, useContext, useState  } from "react";
+import {
+  createContext,
+  useContext,
+  useState
+} from "react";
 
-const AuthContext = createContext(null);
+const AuthContext =
+  createContext(null);
 
-export function AuthProvider({ children }) {
-  /*
-   * Hàm khởi tạo state.
-   *
-   * Khi ứng dụng vừa chạy, nó kiểm tra localStorage
-   * xem trước đó người dùng đã đăng nhập chưa.
-   */
-  const [currentUser, setCurrentUser] = useState(() => {
+export function AuthProvider({
+  children
+}) {
+
+  const [
+    currentUser,
+    setCurrentUser
+  ] = useState(() => {
+
     const storedUser =
-      localStorage.getItem("currentUser");
+      localStorage.getItem(
+        "currentUser"
+      );
 
     if (!storedUser) {
       return null;
     }
 
     try {
-      return JSON.parse(storedUser);
+      return JSON.parse(
+        storedUser
+      );
     } catch (error) {
+
       console.error(
         "Failed to parse current user:",
         error
       );
 
-      localStorage.removeItem("currentUser");
+      localStorage.removeItem(
+        "currentUser"
+      );
 
       return null;
     }
+
   });
 
   /*
-   * Hàm login nhận user đã đăng nhập thành công.
+   * LOGIN
    */
   const login = (user) => {
+
     localStorage.setItem(
       "currentUser",
       JSON.stringify(user)
     );
 
-    /*
-     * Dòng này rất quan trọng.
-     *
-     * Khi currentUser thay đổi,
-     * tất cả component dùng AuthContext
-     * sẽ render lại.
-     */
     setCurrentUser(user);
   };
 
   /*
-   * Hàm logout.
+   * LOGOUT
    */
   const logout = () => {
-    localStorage.removeItem("currentUser");
+
+    localStorage.removeItem(
+      "currentUser"
+    );
+
     setCurrentUser(null);
   };
+
+  /*
+   * UPDATE USER
+   * Dùng khi sửa profile
+   */
+  const updateCurrentUser =
+    (updatedUser) => {
+
+      localStorage.setItem(
+        "currentUser",
+        JSON.stringify(
+          updatedUser
+        )
+      );
+
+      setCurrentUser(
+        updatedUser
+      );
+    };
 
   const authValue = {
     currentUser,
     login,
     logout,
-    isAuthenticated: currentUser !== null
+    updateCurrentUser,
+    isAuthenticated:
+      currentUser !== null
   };
 
   return (
-    <AuthContext.Provider value={authValue}>
+    <AuthContext.Provider
+      value={authValue}
+    >
       {children}
     </AuthContext.Provider>
   );
 }
 
-/*
- * Custom hook giúp component sử dụng AuthContext dễ hơn.
- */
 export function useAuth() {
-  const context = useContext(AuthContext);
+
+  const context =
+    useContext(AuthContext);
 
   if (!context) {
     throw new Error(

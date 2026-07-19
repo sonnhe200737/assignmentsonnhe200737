@@ -19,3 +19,46 @@ export const updateCourse = (id, course) => {
 export const deleteCourse = (id) => {
   return api.delete(`/courses/${id}`);
 };
+
+
+// Hàm lấy danh sách enrollments của 1 user cụ thể đối với 1 khóa học cụ thể
+export const checkEnrollment = (userId, courseId) => {
+  return api.get(`/enrollments?userId=${userId}&courseId=${courseId}`);
+};
+
+// Hàm gửi request tạo mới bản ghi enroll học viên vào khóa học
+export const enrollCourse = (enrollmentData) => {
+  return api.post("/enrollments", enrollmentData);
+};
+export const getEnrollmentsByUser = (userId) => {
+  return api.get(`/enrollments?userId=${userId}`);
+};
+export const getLessonsByCourseId = (
+  courseId
+) => {
+  return api.get(
+    `/lessons?courseId=${courseId}&_sort=order`
+  );
+};
+
+export const getLessonProgress =
+  (userId) => {
+    return api.get(
+      `/lessonProgress?userId=${userId}`
+    );
+  };
+
+export const completeLesson =
+  (data) => {
+    return api.post(
+      "/lessonProgress",
+      data
+    );
+  };
+
+export const checkLessonCompleted =
+  (userId, lessonId) => {
+    return api.get(
+      `/lessonProgress?userId=${userId}&lessonId=${lessonId}`
+    );
+  };
