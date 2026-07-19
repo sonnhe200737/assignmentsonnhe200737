@@ -1,0 +1,141 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Web Development"
+    },
+    {
+      "id": 2,
+      "name": "Data Science"
+    },
+    {
+      "id": 3,
+      "name": "UI/UX Design"
+    },
+    {
+      "id": 4,
+      "name": "Business"
+    }
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "React for Beginners",
+      "description": "Learn React fundamentals, components, props, state, hooks, and routing.",
+      "categoryId": 1,
+      "categoryName": "Web Development",
+      "instructor": "John Smith",
+      "level": "Beginner",
+      "duration": 12,
+      "lessonCount": 18,
+      "price": 19.99,
+      "rating": 4.8,
+      "studentCount": 1250,
+      "image": "/images/courses/reactfor.jpg"
+    },
+    {
+      "id": 2,
+      "title": "JavaScript Essentials",
+      "description": "Build a strong JavaScript foundation through practical examples and exercises.",
+      "categoryId": 1,
+      "categoryName": "Web Development",
+      "instructor": "Emily Brown",
+      "level": "Beginner",
+      "duration": 10,
+      "lessonCount": 15,
+      "price": 14.99,
+      "rating": 4.6,
+      "studentCount": 980,
+      "image": "/images/courses/java.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Python for Data Analysis",
+      "description": "Use Python, pandas, and data visualization tools to analyze real datasets.",
+      "categoryId": 2,
+      "categoryName": "Data Science",
+      "instructor": "Michael Lee",
+      "level": "Intermediate",
+      "duration": 16,
+      "lessonCount": 24,
+      "price": 29.99,
+      "rating": 4.9,
+      "studentCount": 1640,
+      "image": "/images/courses/data.jpg"
+    },
+    {
+      "id": 4,
+      "title": "UI/UX Design Fundamentals",
+      "description": "Understand user research, wireframes, prototypes, and modern interface design.",
+      "categoryId": 3,
+      "categoryName": "UI/UX Design",
+      "instructor": "Sophia Wilson",
+      "level": "Beginner",
+      "duration": 8,
+      "lessonCount": 12,
+      "price": 17.99,
+      "rating": 4.7,
+      "studentCount": 760,
+      "image": "/images/courses/ui.jpg"
+    },
+    {
+      "id": 5,
+      "title": "Digital Marketing Strategy",
+      "description": "Learn how to create practical marketing campaigns for digital platforms.",
+      "categoryId": 4,
+      "categoryName": "Business",
+      "instructor": "David Taylor",
+      "level": "Intermediate",
+      "duration": 9,
+      "lessonCount": 14,
+      "price": 22.99,
+      "rating": 4.5,
+      "studentCount": 540,
+      "image": "/images/courses/digi.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Advanced React Development",
+      "description": "Explore reusable hooks, context, performance optimization, and application architecture.",
+      "categoryId": 1,
+      "categoryName": "Web Development",
+      "instructor": "John Smith",
+      "level": "Advanced",
+      "duration": 20,
+      "lessonCount": 28,
+      "price": 39.99,
+      "rating": 4.9,
+      "studentCount": 890,
+      "image": "/images/courses/ad.jpg"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "fullName": "Nguyen Van An",
+      "email": "student@gmail.com",
+      "password": "123456",
+      "role": "student",
+      "avatar": ""
+    },
+    {
+      "id": 2,
+      "fullName": "SkillUp Admin",
+      "email": "admin@system.com",
+      "password": "admin123",
+      "role": "admin",
+      "avatar": ""
+    },
+    {
+      "fullName": "Đặng Công Minh",
+      "email": "dangcongminh03082006@gmail.com",
+      "password": "Minh382006",
+      "role": "student",
+      "avatar": "",
+      "id": 3
+    }
+  ],
+  "enrollments": [],
+  "favorites": [],
+  "reviews": []
+}

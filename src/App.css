@@ -1,38 +1,1040 @@
-.App {
-  text-align: center;
+.card {
+  border-radius: 16px;
 }
 
-.App-logo {
-  height: 40vmin;
+.btn {
+  border-radius: 8px;
+}
+
+.form-control {
+  min-height: 45px;
+}
+
+.page-transition {
+  animation: pageFadeIn 0.35s ease;
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* all courses 1 */
+.course-card {
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.course-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12) !important;
+}
+
+.course-card-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* all course 2 */
+.courses-page {
+  min-height: 100vh;
+  background-color: #f8fafc;
+}
+
+.courses-heading-section {
+  background:
+    linear-gradient(
+      135deg,
+      #eff6ff,
+      #f8fafc
+    );
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.course-filter-card {
+  padding: 24px;
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+}
+
+.course-filter-card .form-control,
+.course-filter-card .form-select {
+  min-height: 46px;
+  border-color: #cbd5e1;
+}
+
+.course-filter-card .form-control:focus,
+.course-filter-card .form-select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+.empty-course-result {
+  padding: 60px 24px;
+  text-align: center;
+  background-color: white;
+  border: 1px dashed #cbd5e1;
+  border-radius: 16px;
+}
+
+/* course details */
+.course-detail-page {
+  background-color: #f8fafc;
+  min-height: 100vh;
+}
+
+.course-detail-hero {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(239, 246, 255, 0.95),
+      rgba(248, 250, 252, 0.98)
+    );
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.breadcrumb {
+  font-size: 15px;
+}
+
+.breadcrumb a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb-item.active {
+  color: #64748b;
+}
+
+.course-main-card {
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 36px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+}
+
+.course-detail-title {
+  margin-bottom: 18px;
+  font-size: 42px;
+  line-height: 1.2;
+  font-weight: 750;
+  color: #0f172a;
+}
+
+.course-detail-description {
+  margin-bottom: 28px;
+  font-size: 18px;
+  line-height: 1.7;
+  color: #475569;
+}
+
+.course-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.course-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background-color: #f8fafc;
+}
+
+.course-meta-icon {
+  display: flex;
+  width: 42px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background-color: #dbeafe;
+  font-size: 20px;
+}
+
+.course-meta-item strong,
+.course-meta-item span {
+  display: block;
+}
+
+.course-meta-item strong {
+  color: #0f172a;
+}
+
+.course-meta-item span {
+  margin-top: 2px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.course-instructor {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.course-enroll-card {
+  overflow: hidden;
+  position: sticky;
+  top: 20px;
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+}
+
+.course-detail-image {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+}
+
+.course-enroll-content {
+  padding: 24px;
+}
+
+.course-price-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.course-price-block strong {
+  font-size: 28px;
+  color: #2563eb;
+}
+
+.course-content-card {
+  padding: 28px;
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+}
+
+.course-content-card h3,
+.course-content-card h4 {
+  margin-bottom: 18px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.course-content-card p {
+  margin-bottom: 0;
+  line-height: 1.8;
+  color: #475569;
+}
+
+.learning-item {
+  height: 100%;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background-color: #eff6ff;
+  color: #1e3a8a;
+}
+
+.course-info-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 14px 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.course-info-row:last-child {
+  border-bottom: none;
+}
+
+.course-info-row span {
+  color: #64748b;
+}
+
+.course-info-row strong {
+  text-align: right;
+  color: #0f172a;
+}
+
+@media (max-width: 991px) {
+  .course-enroll-card {
+    position: static;
+  }
+}
+
+@media (max-width: 767px) {
+  .course-main-card {
+    padding: 24px;
+  }
+
+  .course-detail-title {
+    font-size: 32px;
+  }
+
+  .course-meta-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* phân trang */
+/* =========================
+   COURSE PAGINATION
+========================= */
+
+.course-pagination {
+  margin-top: 48px;
+}
+
+.course-pagination .pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Bỏ border mặc định giữa các nút Bootstrap */
+.course-pagination .page-item {
+  margin: 0;
+}
+
+/* Style chung cho tất cả nút */
+.course-pagination .page-link {
+  min-width: 42px;
+  height: 42px;
+  padding: 0 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #334155;
+  background-color: #ffffff;
+
+  border: 1px solid #dbe3ee;
+  border-radius: 10px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  box-shadow: none;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* Vì Bootstrap thường bỏ border-radius ở các nút giữa */
+.course-pagination .page-item:first-child .page-link,
+.course-pagination .page-item:last-child .page-link {
+  border-radius: 10px;
+}
+
+/* Hover */
+.course-pagination .page-link:hover {
+  color: #2563eb;
+  background-color: #eff6ff;
+  border-color: #93c5fd;
+
+  transform: translateY(-2px);
+}
+
+/* Nút trang đang được chọn */
+.course-pagination .page-item.active .page-link {
+  color: #ffffff;
+  background-color: #2563eb;
+  border-color: #2563eb;
+
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.25);
+}
+
+/* Hover vào trang đang active */
+.course-pagination .page-item.active .page-link:hover {
+  color: #ffffff;
+  background-color: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+/* Nút Previous hoặc Next bị disabled */
+.course-pagination .page-item.disabled .page-link,
+.course-pagination .page-link:disabled {
+  color: #94a3b8;
+  background-color: #f1f5f9;
+  border-color: #e2e8f0;
+
+  cursor: not-allowed;
+  opacity: 0.75;
+  transform: none;
+}
+
+/* Khi click hoặc focus bằng bàn phím */
+.course-pagination .page-link:focus {
+  color: #2563eb;
+  background-color: #eff6ff;
+
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+/* Active vẫn giữ chữ trắng khi focus */
+.course-pagination .page-item.active .page-link:focus {
+  color: #ffffff;
+  background-color: #2563eb;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 576px) {
+  .course-pagination {
+    margin-top: 36px;
+  }
+
+  .course-pagination .pagination {
+    gap: 6px;
+  }
+
+  .course-pagination .page-link {
+    min-width: 38px;
+    height: 38px;
+    padding: 0 10px;
+
+    font-size: 13px;
+  }
+}
+
+/* ==================================================
+   LOGIN PAGE
+================================================== */
+
+.login-page {
+  min-height: calc(100vh - 140px);
+  display: flex;
+  align-items: center;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(37, 99, 235, 0.12),
+      transparent 35%
+    ),
+    linear-gradient(
+      180deg,
+      #f8fafc 0%,
+      #eef4ff 100%
+    );
+}
+
+.login-card {
+  overflow: hidden;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 22px;
+  box-shadow:
+    0 20px 50px rgba(15, 23, 42, 0.1),
+    0 4px 14px rgba(15, 23, 42, 0.05);
+}
+
+.login-heading {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.login-icon {
+  display: flex;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 18px;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  background: linear-gradient(
+    135deg,
+    #2563eb,
+    #4f46e5
+  );
+  border-radius: 18px;
+  font-size: 27px;
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
+}
+
+.login-input-wrapper {
+  position: relative;
+}
+
+.login-input-wrapper > i {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  z-index: 2;
+  color: #94a3b8;
+  transform: translateY(-50%);
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.login-input {
+  min-height: 48px;
+  padding-left: 44px;
+  color: #1e293b;
+  background-color: #f8fafc;
+  border-color: #dbe3ee;
+  border-radius: 11px;
+}
+
+.login-input::placeholder {
+  color: #94a3b8;
+}
+
+.login-input:focus {
+  background-color: #ffffff;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+.login-input:disabled {
+  color: #64748b;
+  background-color: #f1f5f9;
+  cursor: not-allowed;
+}
+
+.login-submit-button {
+  min-height: 48px;
+  background: linear-gradient(
+    135deg,
+    #2563eb,
+    #4f46e5
+  );
+  border: none;
+  border-radius: 11px;
+  font-weight: 700;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.login-submit-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.28);
+}
+
+.login-submit-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+
+.forgot-password-button {
+  padding: 0;
+  margin-bottom: 8px;
+  color: #2563eb;
+  background: transparent;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.forgot-password-button:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+.login-divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 25px 0 20px;
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.login-divider::before,
+.login-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: #e2e8f0;
+}
+
+.login-register-link {
+  color: #2563eb;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.login-register-link:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+.login-demo-account {
+  padding: 14px 16px;
+  margin-top: 24px;
+  color: #475569;
+  background-color: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 11px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+@media (max-width: 576px) {
+  .login-page {
+    align-items: flex-start;
+  }
+
+  .login-card {
+    border-radius: 16px;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* =========================
+   HEADER USER MENU
+========================= */
+
+.user-menu-button {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px;
+  color: #1e293b;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 12px;
+}
+
+.user-menu-button:hover,
+.user-menu-button:focus {
+  color: #1e293b;
+  background-color: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+.user-avatar {
+  display: flex;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  overflow: hidden;
+  color: #ffffff;
+  background: linear-gradient(
+    135deg,
+    #2563eb,
+    #4f46e5
+  );
+  border-radius: 50%;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
-.App-link {
-  color: #61dafb;
+.user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.user-menu-info {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.user-menu-info strong {
+  max-width: 150px;
+  overflow: hidden;
+  color: #1e293b;
+  font-size: 14px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user-menu-info small {
+  margin-top: 3px;
+  color: #64748b;
+  font-size: 11px;
+  text-transform: capitalize;
+}
+
+.dropdown-menu {
+  padding: 8px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 16px 35px rgba(15, 23, 42, 0.12);
+}
+
+.dropdown-item {
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.dropdown-item:hover {
+  background-color: #eff6ff;
+}
+
+@media (max-width: 991px) {
+  .user-menu-button {
+    width: 100%;
+    margin-top: 12px;
+    justify-content: flex-start;
   }
-  to {
-    transform: rotate(360deg);
+
+  .user-menu-info strong {
+    max-width: 220px;
+  }
+}
+
+/* ==================================================
+   MY LEARNING PAGE
+================================================== */
+
+.my-learning-page {
+  min-height: calc(100vh - 140px);
+  background-color: #f8fafc;
+}
+
+.my-learning-heading {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(37, 99, 235, 0.1),
+      rgba(79, 70, 229, 0.06)
+    ),
+    #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.my-learning-empty {
+  display: flex;
+  min-height: 340px;
+  padding: 45px 24px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  background-color: #ffffff;
+  border: 1px dashed #cbd5e1;
+  border-radius: 18px;
+}
+
+.my-learning-empty-icon {
+  display: flex;
+  width: 76px;
+  height: 76px;
+  margin-bottom: 20px;
+  align-items: center;
+  justify-content: center;
+  color: #2563eb;
+  background-color: #eff6ff;
+  border-radius: 50%;
+  font-size: 31px;
+}
+
+.my-learning-empty h3 {
+  margin-bottom: 10px;
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.my-learning-empty p {
+  max-width: 500px;
+  margin-bottom: 22px;
+  line-height: 1.7;
+}
+
+/* ==================================================
+   PROFILE PAGE
+================================================== */
+
+.profile-page {
+  min-height: calc(100vh - 140px);
+  background-color: #f8fafc;
+}
+
+.profile-card {
+  display: flex;
+  padding: 32px;
+  align-items: center;
+  gap: 24px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+}
+
+.profile-avatar {
+  display: flex;
+  width: 90px;
+  height: 90px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: #ffffff;
+  background: linear-gradient(
+    135deg,
+    #2563eb,
+    #4f46e5
+  );
+  border-radius: 50%;
+  font-size: 34px;
+  font-weight: 700;
+}
+
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-information h2 {
+  margin-bottom: 6px;
+  color: #0f172a;
+  font-weight: 750;
+}
+
+.profile-information p {
+  margin-bottom: 12px;
+}
+
+.profile-role {
+  display: inline-flex;
+  padding: 6px 12px;
+  color: #1d4ed8;
+  background-color: #dbeafe;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+@media (max-width: 576px) {
+  .profile-card {
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* ==================================================
+   REGISTER PAGE
+================================================== */
+
+.register-page {
+  min-height: calc(100vh - 140px);
+  display: flex;
+  align-items: center;
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(79, 70, 229, 0.12),
+      transparent 35%
+    ),
+    linear-gradient(
+      180deg,
+      #f8fafc 0%,
+      #eef4ff 100%
+    );
+}
+
+.register-page > .container {
+  width: 100%;
+}
+
+.register-card {
+  overflow: hidden;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 22px;
+  box-shadow:
+    0 20px 50px rgba(15, 23, 42, 0.1),
+    0 4px 14px rgba(15, 23, 42, 0.05);
+}
+
+.register-heading {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.register-icon {
+  display: flex;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 18px;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  background: linear-gradient(
+    135deg,
+    #2563eb,
+    #4f46e5
+  );
+  border-radius: 18px;
+  font-size: 27px;
+  box-shadow:
+    0 10px 25px rgba(37, 99, 235, 0.25);
+}
+
+.register-input-wrapper {
+  position: relative;
+}
+
+.register-input-wrapper > i {
+  position: absolute;
+  top: 24px;
+  left: 15px;
+  z-index: 2;
+  color: #94a3b8;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.register-input {
+  min-height: 48px;
+  padding-left: 44px;
+  color: #1e293b;
+  background-color: #f8fafc;
+  border-color: #dbe3ee;
+  border-radius: 11px;
+}
+
+.register-password-input {
+  padding-right: 48px;
+}
+
+.register-input::placeholder {
+  color: #94a3b8;
+}
+
+.register-input:focus {
+  background-color: #ffffff;
+  border-color: #2563eb;
+  box-shadow:
+    0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+.register-input.is-invalid {
+  border-color: #dc3545;
+  background-image: none;
+}
+
+.register-input.is-invalid:focus {
+  border-color: #dc3545;
+  box-shadow:
+    0 0 0 4px rgba(220, 53, 69, 0.12);
+}
+
+.register-password-toggle {
+  position: absolute;
+  top: 24px;
+  right: 13px;
+  z-index: 3;
+  padding: 4px;
+  color: #64748b;
+  background: transparent;
+  border: none;
+  transform: translateY(-50%);
+}
+
+.register-password-toggle:hover {
+  color: #2563eb;
+}
+
+.register-password-toggle:disabled {
+  color: #94a3b8;
+  cursor: not-allowed;
+}
+
+.register-input-wrapper .invalid-feedback {
+  display: block;
+  margin-top: 6px;
+}
+
+.register-submit-button {
+  min-height: 48px;
+  background: linear-gradient(
+    135deg,
+    #2563eb,
+    #4f46e5
+  );
+  border: none;
+  border-radius: 11px;
+  font-weight: 700;
+  box-shadow:
+    0 8px 20px rgba(37, 99, 235, 0.2);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.register-submit-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow:
+    0 12px 24px rgba(37, 99, 235, 0.28);
+}
+
+.register-submit-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+
+.register-divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 25px 0 20px;
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.register-divider::before,
+.register-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: #e2e8f0;
+}
+
+.register-login-link {
+  color: #2563eb;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.register-login-link:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+@media (max-width: 576px) {
+  .register-page {
+    align-items: flex-start;
+  }
+
+  .register-card {
+    border-radius: 16px;
   }
 }
