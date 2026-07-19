@@ -1,6 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
 function Home() {
+  const { currentUser } = useAuth();
+
+  // Nếu là admin thì chuyển sang Dashboard
+  if (currentUser?.role === "admin") {
+    return <Navigate to="/admin" replace />;
+  }
+
   return (
     <>
       <section className="bg-light py-5">
@@ -21,11 +29,17 @@ function Home() {
               </p>
 
               <div className="d-flex gap-3">
-                <Link className="btn btn-primary btn-lg" to="/courses">
+                <Link
+                  className="btn btn-primary btn-lg"
+                  to="/courses"
+                >
                   Explore Courses
                 </Link>
 
-                <Link className="btn btn-outline-primary btn-lg" to="/register">
+                <Link
+                  className="btn btn-outline-primary btn-lg"
+                  to="/register"
+                >
                   Get Started
                 </Link>
               </div>
@@ -35,7 +49,9 @@ function Home() {
               <div className="bg-white rounded-4 shadow p-5 text-center">
                 <div className="display-1">🎓</div>
 
-                <h3 className="mt-3">Start learning today</h3>
+                <h3 className="mt-3">
+                  Start learning today
+                </h3>
 
                 <p className="text-secondary mb-0">
                   Build skills through simple and practical courses.
@@ -49,7 +65,9 @@ function Home() {
       <section className="py-5">
         <div className="container">
           <div className="text-center mb-5">
-            <h2 className="fw-bold">Why learn with SkillUp?</h2>
+            <h2 className="fw-bold">
+              Why learn with SkillUp?
+            </h2>
 
             <p className="text-secondary">
               Everything you need for a simple learning journey.

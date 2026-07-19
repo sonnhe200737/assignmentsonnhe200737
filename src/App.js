@@ -16,49 +16,159 @@ import Profile from "./pages/Profile";
 import Payment from "./pages/Payment";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import Learning from "./pages/Learning";
+
+import Dashboard from "./pages/admin/Dashboard";
+import CourseManagement from "./pages/admin/CourseManagement";
+import LessonManagement from "./pages/admin/LessonManagement";
+import UserManagement from "./pages/admin/UserManagement";
+import EnrollmentManagement from "./pages/admin/EnrollmentManagement";
+
 function App() {
   return (
     <MainLayout>
+
       <PageTransition>
+
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/courses" element={<Courses />} />
-          <Route path="/courses/:id" element={<CourseDetail />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="*" element={<NotFound />} />
-          <Route path="/my-learning" element={
-            <ProtectedRoute>
-              <MyLearning />
-            </ProtectedRoute>
-          }
+
+          {/* Public */}
+
+          <Route
+            path="/"
+            element={<Home />}
           />
+
+          <Route
+            path="/courses"
+            element={<Courses />}
+          />
+
+          <Route
+            path="/courses/:id"
+            element={<CourseDetail />}
+          />
+
+          <Route
+            path="/login"
+            element={<Login />}
+          />
+
+          <Route
+            path="/register"
+            element={<Register />}
+          />
+
+
+          {/* Student */}
+
+          <Route
+            path="/my-learning"
+            element={
+              <ProtectedRoute role="student">
+                <MyLearning />
+              </ProtectedRoute>
+            }
+          />
+
+
           <Route
             path="/payment/:id"
-            element={<Payment />}
+            element={
+              <ProtectedRoute role="student">
+                <Payment />
+              </ProtectedRoute>
+            }
           />
+
 
           <Route
             path="/payment-success/:id"
-            element={<PaymentSuccess />}
+            element={
+              <ProtectedRoute role="student">
+                <PaymentSuccess />
+              </ProtectedRoute>
+            }
           />
 
-          <Route path="/profile" element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          }
-          />
+
           <Route
             path="/learning/:id"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute role="student">
                 <Learning />
               </ProtectedRoute>
             }
           />
+
+
+          {/* Common */}
+
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+
+
+          {/* Admin */}
+
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute role="admin">
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+
+
+          {/* Not found */}
+
+          <Route
+            path="*"
+            element={<NotFound />}
+          />
+          <Route
+            path="/admin/courses"
+            element={
+              <ProtectedRoute role="admin">
+                <CourseManagement />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/lessons"
+            element={
+              <ProtectedRoute role="admin">
+                <LessonManagement />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/admin/users"
+            element={
+              <ProtectedRoute role="admin">
+                <UserManagement />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/enrollments"
+            element={
+              <ProtectedRoute role="admin">
+                <EnrollmentManagement />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
+
+
       </PageTransition>
+
     </MainLayout>
   );
 }

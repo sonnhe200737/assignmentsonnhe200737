@@ -175,7 +175,8 @@ function Register() {
         email: normalizedEmail,
         password: formData.password,
         role: "student",
-        avatar: ""
+        avatar: "",
+        status: "active"
       };
 
       /*
@@ -252,11 +253,10 @@ function Register() {
                         id="fullName"
                         name="fullName"
                         type="text"
-                        className={`form-control register-input ${
-                          fieldErrors.fullName
+                        className={`form-control register-input ${fieldErrors.fullName
                             ? "is-invalid"
                             : ""
-                        }`}
+                          }`}
                         placeholder="Enter your full name"
                         value={formData.fullName}
                         disabled={loading}
@@ -287,11 +287,10 @@ function Register() {
                         id="registerEmail"
                         name="email"
                         type="email"
-                        className={`form-control register-input ${
-                          fieldErrors.email
+                        className={`form-control register-input ${fieldErrors.email
                             ? "is-invalid"
                             : ""
-                        }`}
+                          }`}
                         placeholder="Enter your email"
                         value={formData.email}
                         disabled={loading}
@@ -326,11 +325,10 @@ function Register() {
                             ? "text"
                             : "password"
                         }
-                        className={`form-control register-input register-password-input ${
-                          fieldErrors.password
+                        className={`form-control register-input register-password-input ${fieldErrors.password
                             ? "is-invalid"
                             : ""
-                        }`}
+                          }`}
                         placeholder="Create a password"
                         value={formData.password}
                         disabled={loading}
@@ -394,11 +392,10 @@ function Register() {
                             ? "text"
                             : "password"
                         }
-                        className={`form-control register-input register-password-input ${
-                          fieldErrors.confirmPassword
+                        className={`form-control register-input register-password-input ${fieldErrors.confirmPassword
                             ? "is-invalid"
                             : ""
-                        }`}
+                          }`}
                         placeholder="Enter your password again"
                         value={formData.confirmPassword}
                         disabled={loading}

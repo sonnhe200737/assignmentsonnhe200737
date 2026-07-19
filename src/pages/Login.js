@@ -113,6 +113,12 @@ function Login() {
         setError("Email or password is incorrect.");
         return;
       }
+      if (foundUser.status === "disabled") {
+        setError(
+          "Your account has been disabled. Please contact administrator."
+        );
+        return;
+      }
 
       /*
        * Không nên lưu password vào localStorage.
@@ -138,9 +144,15 @@ function Login() {
        * replace: true giúp người dùng không quay lại
        * trang Login bằng nút Back của trình duyệt.
        */
-      navigate(redirectPath, {
-        replace: true
-      });
+      if (safeUser.role === "admin") {
+        navigate("/admin", {
+          replace: true
+        });
+      } else {
+        navigate(redirectPath, {
+          replace: true
+        });
+      };
     } catch (error) {
       console.error("Login failed:", error);
 

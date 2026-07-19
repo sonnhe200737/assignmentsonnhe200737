@@ -4,7 +4,7 @@ const USER_API_URL =
   "http://localhost:9999/users";
 
 /*
- * Tìm user dựa theo email
+ * Đăng nhập
  */
 export const getUsersByEmail =
   (email) => {
@@ -19,7 +19,7 @@ export const getUsersByEmail =
   };
 
 /*
- * Tạo user mới
+ * Đăng ký
  */
 export const createUser =
   (userData) => {
@@ -41,3 +41,39 @@ export const updateUser = (
     userData
   );
 };
+
+/*
+ * ==========================
+ * ADMIN
+ * ==========================
+ */
+
+/*
+ * Lấy tất cả user
+ */
+export const getAllUsers =
+  () => {
+    return axios.get(
+      USER_API_URL
+    );
+  };
+
+/*
+ * Lấy user theo id
+ */
+export const getUserById =
+  (id) => {
+    return axios.get(
+      `${USER_API_URL}/${id}`
+    );
+  };
+
+/*
+ * Xóa user
+ */
+export const deleteUser =
+  (id) => {
+    return axios.delete(
+      `${USER_API_URL}/${id}`
+    );
+  };

@@ -29,7 +29,7 @@ function Header() {
         <div className="container">
           <Link
             className="navbar-brand fw-bold text-primary"
-            to="/"
+            to={currentUser?.role === "admin" ? "/admin" : "/"}
           >
             SkillUp
           </Link>
@@ -50,26 +50,34 @@ function Header() {
             className="collapse navbar-collapse"
             id="mainNavbar"
           >
+            {/* Menu */}
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <NavLink
                   className="nav-link"
-                  to="/"
+                  to={
+                    currentUser?.role === "admin"
+                      ? "/admin"
+                      : "/"
+                  }
                 >
                   Home
                 </NavLink>
               </li>
 
-              <li className="nav-item">
-                <NavLink
-                  className="nav-link"
-                  to="/courses"
-                >
-                  Courses
-                </NavLink>
-              </li>
+              {currentUser?.role !== "admin" && (
+                <li className="nav-item">
+                  <NavLink
+                    className="nav-link"
+                    to="/courses"
+                  >
+                    Courses
+                  </NavLink>
+                </li>
+              )}
             </ul>
 
+            {/* Chưa đăng nhập */}
             {!isAuthenticated ? (
               <div className="d-flex gap-2">
                 <Link
@@ -112,7 +120,7 @@ function Header() {
                       {currentUser.fullName}
                     </strong>
 
-                    <small>\
+                    <small>
                       {currentUser.role}
                     </small>
                   </span>

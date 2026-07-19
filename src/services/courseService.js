@@ -62,3 +62,45 @@ export const checkLessonCompleted =
       `/lessonProgress?userId=${userId}&lessonId=${lessonId}`
     );
   };
+ 
+
+  // ==============================
+// ADMIN
+// ==============================
+
+// Lấy tất cả enrollments
+export const getAllEnrollments = () => {
+  return api.get("/enrollments");
+};
+
+// Lấy tất cả lessons
+export const getAllLessons = () => {
+  return api.get("/lessons");
+};
+
+// Lấy lesson theo id
+export const getLessonById = (id) => {
+  return api.get(`/lessons/${id}`);
+};
+
+// Thêm lesson
+export const createLesson = (lesson) => {
+  return api.post("/lessons", lesson);
+};
+
+// Sửa lesson
+export const updateLesson = (id, lesson) => {
+  return api.put(`/lessons/${id}`, lesson);
+};
+
+// Xóa lesson
+export const deleteLesson = (id) => {
+  return api.delete(`/lessons/${id}`);
+};
+export const deleteEnrollment = (
+  id
+) => {
+  return api.delete(
+    `/enrollments/${id}`
+  );
+};
