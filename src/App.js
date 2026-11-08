@@ -22,6 +22,7 @@ import CourseManagement from "./pages/admin/CourseManagement";
 import LessonManagement from "./pages/admin/LessonManagement";
 import UserManagement from "./pages/admin/UserManagement";
 import EnrollmentManagement from "./pages/admin/EnrollmentManagement";
+import ForgotPassword from "./pages/ForgotPassword";
 
 function App() {
   return (
@@ -57,7 +58,10 @@ function App() {
             path="/register"
             element={<Register />}
           />
-
+          <Route
+            path="/forgot-password"
+            element={<ForgotPassword />}
+          />
 
           {/* Student */}
 

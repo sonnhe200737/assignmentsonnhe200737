@@ -244,12 +244,12 @@ function Login() {
                         Password
                       </label>
 
-                      <button
-                        type="button"
+                      <Link
+                        to="/forgot-password"
                         className="forgot-password-button"
                       >
                         Forgot password?
-                      </button>
+                      </Link>
                     </div>
 
                     <div className="login-input-wrapper">
